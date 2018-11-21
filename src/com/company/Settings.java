@@ -1,7 +1,7 @@
 /*
 Settings container to read and write XML files
-Last modified: 2018-11-20
 Author: Max Gulde, max.gulde@emi.fraunhofer.de
+Licensed under GNU GPL-2.0-only.
  */
 
 package com.company;
@@ -13,27 +13,26 @@ import java.lang.String;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class Settings
+class Settings
 {
     // Options
-    public static boolean fDisplayMessages = true;      // Display messages in console.
+    static boolean fDisplayMessages = true;      // Display messages in console.
 
-    // Physical contants
-    public static double EarthGM = 3.986004415e+14;     // Earth's gravitational parameter [m^3 s^-2]
-    public static double EarthRadius = 6378140;               // Earth radius [m]
+    // Physical constants
+    static double EarthGM = 3.986004415e+14;     // Earth's gravitational parameter [m^3 s^-2]
+    static double EarthRadius = 6378140;               // Earth radius [m]
 
     // Files
-    public static Locale LocalFormat = new Locale("EN", "US");
-    private String FileSettings = "set.xml";
+    static Locale LocalFormat = new Locale("EN", "US");
 
     // Properties
-    public Properties AppSettings;
+    private Properties AppSettings;
 
     // Constructor
-    public Settings()
+    Settings()
     {
         String PathRoot = "";
-        String PathSettings = PathRoot + FileSettings;
+        String PathSettings = PathRoot + "set.xml";
         AppSettings = new Properties();
         // Try to load from file. If not successful, use default values.
         try
@@ -75,7 +74,7 @@ public class Settings
         Timestamp Now = new Timestamp(System.currentTimeMillis());
         try
         {
-            AppSettings.storeToXML(new FileOutputStream(path), String.format("File generated on " + Format.format(Now)));
+            AppSettings.storeToXML(new FileOutputStream(path), "File generated on " + Format.format(Now));
         }
         catch (Exception e)
         {

@@ -1,3 +1,9 @@
+/*
+Visibility Handler to compute and write accesses.
+Author: Max Gulde, max.gulde@emi.fraunhofer.de
+Licensed under GNU GPL-2.0-only.
+ */
+
 package com.company;
 
 import java.io.*;
@@ -10,16 +16,14 @@ import org.orekit.propagation.events.handlers.*;
 public class VisibilityHandler implements EventHandler<ElevationDetector> {
 
     private PrintWriter AccessWriter;
-    private AbsoluteDate AccessBegin, AccessEnd;
+    private AbsoluteDate AccessBegin;
     private int AccessNum = 1;
-    Settings Set;
 
-    public VisibilityHandler(Settings set)
+    VisibilityHandler(Settings set)
     {
-        Set = set;
         // Write header to access file
         try {
-            AccessWriter = new PrintWriter(Set.GetValue("ExpFileAccessTimes"), Set.GetValue("ExpTextFormat"));
+            AccessWriter = new PrintWriter(set.GetValue("ExpFileAccessTimes"), set.GetValue("ExpTextFormat"));
             AccessWriter.println("\"Access\",\"Start Time (UTCG)\",\"Stop Time (UTCG)\",\"Duration (sec)\"");
         }
         catch (Exception e)
@@ -35,7 +39,7 @@ public class VisibilityHandler implements EventHandler<ElevationDetector> {
             return Action.CONTINUE;
         // Satellite is exiting access zone, write access
         } else {
-            AccessEnd = s.getDate();
+            AbsoluteDate AccessEnd = s.getDate();
             // Extract date, time and duration of the access.
             try {
                 double visDuration = AccessEnd.durationFrom(AccessBegin);
@@ -61,7 +65,7 @@ public class VisibilityHandler implements EventHandler<ElevationDetector> {
         }
     }
 
-    public void CloseFile()
+    void CloseFile()
     {
         AccessWriter.close();
     }

@@ -1,8 +1,8 @@
 /*
-Determine satellite attitude for a given orbit and satellite orientation.
+Determine satellite attitude for a given orbit with respect to Earth and Sun. Lists accesses to ground station.
 Based on the SOA_Example from Javier Montemayor
-Last modified: 2018-11-20
 Author: Max Gulde, max.gulde@emi.fraunhofer.de
+Licensed under GNU GPL-2.0-only.
  */
 
 package com.company;
