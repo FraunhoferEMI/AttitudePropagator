@@ -90,8 +90,10 @@ public class Main
         }
 
         // Setting up files and print files header
-        SunAngles = new PrintWriter(Set.GetValue("ExpFileSunAngles"),Set.GetValue("ExpTextFormat"));
-        EarthAngles = new PrintWriter(Set.GetValue("ExpFileEarthAngles"),Set.GetValue("ExpTextFormat"));
+        String FilePath = Set.GetValue("ResultsDirectory") + "/" + Set.GetValue("ExpFileSunAngles");
+        SunAngles = new PrintWriter(FilePath,Set.GetValue("ExpTextFormat"));
+        FilePath = Set.GetValue("ResultsDirectory") + "/" + Set.GetValue("ExpFileEarthAngles");
+        EarthAngles = new PrintWriter(FilePath,Set.GetValue("ExpTextFormat"));
         SunAngles.println("\"Time (UTCG)\",\"Azimuth (deg)\",\"Elevation (deg)\",\"Subsolar (deg)\"");
         EarthAngles.println("\"Time (UTCG)\",\"Azimuth (deg)\",\"Elevation (deg)\"");
         if (Settings.fDisplayMessages) {

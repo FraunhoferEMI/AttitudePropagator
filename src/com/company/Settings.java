@@ -109,7 +109,7 @@ class Settings
         AppSettings.setProperty("SimTimeStep", "60");                                   // (s)
         AppSettings.setProperty("SimMaxCheck", "60");                                   // (s)
         AppSettings.setProperty("SimDivThreshold", "0.001");                            // (s)
-        AppSettings.setProperty("SimMinElevation", "0");                               // (deg)
+        AppSettings.setProperty("SimMinElevation", "0");                                // (deg)
 
         // Export options
         String SatelliteName = "ERNST";
@@ -119,5 +119,6 @@ class Settings
         AppSettings.setProperty("ExpFileEarthAngles", SatelliteName + "_" + StrIdentifier + "_EarthAngles.csv");
         AppSettings.setProperty("ExpFileAccessTimes", SatelliteName + "_" + StrIdentifier + "_AccessTimes.csv");
         AppSettings.setProperty("ExpTextFormat", "UTF-8");
+        AppSettings.setProperty("ResultsDirectory", "U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data/Access");
     }
 }

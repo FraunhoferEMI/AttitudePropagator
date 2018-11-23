@@ -23,7 +23,8 @@ public class VisibilityHandler implements EventHandler<ElevationDetector> {
     {
         // Write header to access file
         try {
-            AccessWriter = new PrintWriter(set.GetValue("ExpFileAccessTimes"), set.GetValue("ExpTextFormat"));
+            String FilePath = set.GetValue("ResultsDirectory") + "/" + set.GetValue("ExpFileAccessTimes");
+            AccessWriter = new PrintWriter(FilePath, set.GetValue("ExpTextFormat"));
             AccessWriter.println("\"Access\",\"Start Time (UTCG)\",\"Stop Time (UTCG)\",\"Duration (sec)\"");
         }
         catch (Exception e)

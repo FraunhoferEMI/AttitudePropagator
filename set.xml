@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>File generated on 2018-11-21 11:49:45</comment>
+<comment>File generated on 2018-11-23 11:40:02</comment>
 <entry key="SimStartMinute">00</entry>
 <entry key="SimStartHour">00</entry>
 <entry key="ExpTextFormat">UTF-8</entry>
 <entry key="SatInclination">98.1929</entry>
 <entry key="SatOmega">0</entry>
+<entry key="ResultsDirectory">U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data/Access</entry>
 <entry key="SimStartDay">01</entry>
 <entry key="TargetLon">7.846619</entry>
 <entry key="SimStartMonth">01</entry>
