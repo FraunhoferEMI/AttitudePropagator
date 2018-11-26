@@ -1,7 +1,21 @@
 /*
-Settings container to read and write XML files
-Author: Max Gulde, max.gulde@emi.fraunhofer.de
-Licensed under GNU GPL-2.0-only.
+Settings container to read and write XML files.
+
+The Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e.V.,
+Hansastrasse 27c, 80686 Munich, Germany (further: Fraunhofer) is the holder
+of all proprietary rights on this computer program. You can only use this
+computer program if you have closed a license agreement with Fraunhofer or
+you get the right to use the computer program from someone who is authorized
+to grant you that right. Any use of the computer program without a valid
+license is prohibited and liable to prosecution.
+
+The use of this software is only allowed under the terms and condition of the
+General Public License version 2.0 (GPL 2.0).
+
+Copyright©2018 Gesellschaft zur Foerderung der angewandten Forschung e.V. acting
+on behalf of its Fraunhofer Institut für  Kurzzeitdynamik. All rights reserved.
+
+Contact: max.gulde@emi.fraunhofer.de
  */
 
 package com.company;
@@ -113,12 +127,12 @@ class Settings
 
         // Export options
         String SatelliteName = "ERNST";
-        String StrIdentifier = "i98_1929_a700";
+        String StrIdentifier = "i98_a700";
         AppSettings.setProperty("SatelliteName", SatelliteName);
         AppSettings.setProperty("ExpFileSunAngles", SatelliteName + "_" + StrIdentifier + "_SunAngles.csv");
         AppSettings.setProperty("ExpFileEarthAngles", SatelliteName + "_" + StrIdentifier + "_EarthAngles.csv");
         AppSettings.setProperty("ExpFileAccessTimes", SatelliteName + "_" + StrIdentifier + "_AccessTimes.csv");
         AppSettings.setProperty("ExpTextFormat", "UTF-8");
-        AppSettings.setProperty("ResultsDirectory", "U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data/Access");
+        AppSettings.setProperty("ResultsDirectory", "U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data");
     }
 }
