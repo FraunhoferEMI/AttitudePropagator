@@ -175,16 +175,18 @@ public class Main
                             CurrentSCState.getPVCoordinates().toTaylorProvider(InertialFrame), "Satellite Frame");
 
             // Get position vectors.
-            Vector3D Earth2Sun = Sun.getPVCoordinates(AbsDate, InertialFrame).getPosition();
-            Vector3D Sat2Earth = Earth.getPVCoordinates(AbsDate, SatelliteFrame).getPosition();
-            Vector3D Sat2Sun = Sun.getPVCoordinates(AbsDate, SatelliteFrame).getPosition();
-            Vector3D SatPosition = CurrentSCState.getPVCoordinates().getPosition();
+            Vector3D Earth2Sun = Sun.getPVCoordinates(AbsDate, InertialFrame).getPosition();    // Sun position as seen from Earth
+            Vector3D Sat2Earth = Earth.getPVCoordinates(AbsDate, SatelliteFrame).getPosition(); // Earth position as seen from satellite
+            Vector3D Sat2Sun = Sun.getPVCoordinates(AbsDate, SatelliteFrame).getPosition();     // Sun position as seen from satellite
+            Vector3D Earth2Sat = CurrentSCState.getPVCoordinates().getPosition();
+            // Angle projected on xy plane in satellite geometry
+            Vector3D Sat2SunProjXY = new Vector3D(Sat2Sun.getX(), Sat2Sun.getY(), 0.0);
 
             // Compute solar angles (deg)
             double Subsolar, SunAzimuth, SunElevation;
-            Subsolar = Math.toDegrees(Vector3D.angle(Earth2Sun, SatPosition));
-            SunAzimuth = Math.toDegrees(Vector3D.angle(Vector3D.PLUS_I, Sat2Sun.add(new Vector3D(0.0, 0.0, -Sat2Sun.getZ()))));
-            SunElevation = Math.toDegrees(Vector3D.angle(Sat2Sun, new Vector3D(Sat2Sun.getX(), Sat2Sun.getY(), 0.0)));
+            Subsolar = Math.toDegrees(Vector3D.angle(Earth2Sun, Earth2Sat));
+            SunAzimuth = Math.toDegrees(Vector3D.angle(Vector3D.PLUS_I, Sat2SunProjXY));
+            SunElevation = Math.toDegrees(Vector3D.angle(Sat2Sun, Sat2SunProjXY));
             // Check sign
             if (Sat2Sun.getY() < 0) {
                 SunAzimuth = 360 - SunAzimuth;

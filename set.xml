@@ -2,30 +2,30 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>File generated on 2018-11-23 11:40:02</comment>
-<entry key="SimStartMinute">00</entry>
-<entry key="SimStartHour">00</entry>
-<entry key="ExpTextFormat">UTF-8</entry>
-<entry key="SatInclination">98.1929</entry>
-<entry key="SatOmega">0</entry>
-<entry key="ResultsDirectory">U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data/Access</entry>
-<entry key="SimStartDay">01</entry>
-<entry key="TargetLon">7.846619</entry>
-<entry key="SimStartMonth">01</entry>
-<entry key="SatelliteName">ERNST</entry>
-<entry key="ExpFileEarthAngles">ERNST_i98_1929_a700_EarthAngles.csv</entry>
-<entry key="SatRAAN">10.5834</entry>
-<entry key="SatEccentricity">0</entry>
-<entry key="ExpFileSunAngles">ERNST_i98_1929_a700_SunAngles.csv</entry>
-<entry key="SimMinElevation">0</entry>
-<entry key="SimMaxCheck">60</entry>
-<entry key="SatMeanAnomaly">0</entry>
-<entry key="SimTimeStep">60</entry>
-<entry key="SimDivThreshold">0.001</entry>
-<entry key="SimStartSecond">00.000</entry>
-<entry key="TargetAlt">320</entry>
-<entry key="SimDurationInDays">1.0</entry>
-<entry key="SatAltitude">700000</entry>
-<entry key="TargetLat">48.001081</entry>
-<entry key="SimStartYear">2020</entry>
-<entry key="ExpFileAccessTimes">ERNST_i98_1929_a700_AccessTimes.csv</entry>
+    <entry key="SimStartYear">2021</entry>
+    <entry key="SimStartMonth">01</entry>
+    <entry key="SimStartDay">01</entry>
+    <entry key="SimStartHour">00</entry>
+    <entry key="SimStartMinute">00</entry>
+    <entry key="SimStartSecond">00.000</entry>
+    <entry key="SimDurationInDays">31.0</entry>
+    <entry key="SatelliteName">ERNST</entry>
+    <entry key="SatAltitude">500000</entry>
+    <entry key="SatInclination">97.4</entry>
+    <entry key="SatOmega">0</entry>
+    <entry key="SatRAAN">70.6</entry>
+    <entry key="SatEccentricity">0</entry>
+    <entry key="SatMeanAnomaly">0</entry>
+    <entry key="TargetLon">7.846619</entry>
+    <entry key="TargetLat">48.001081</entry>
+    <entry key="TargetAlt">320</entry>
+    <entry key="SimMinElevation">15</entry>
+    <entry key="SimMaxCheck">60</entry>
+    <entry key="SimTimeStep">60</entry>
+    <entry key="SimDivThreshold">0.001</entry>
+    <entry key="ResultsDirectory">U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data/Access</entry>
+    <entry key="ExpFileAccessTimes">ERNST_i97_a700_AccessTimes.csv</entry>
+    <entry key="ExpFileSunAngles">ERNST_i97_a500_SunAngles.csv</entry>
+    <entry key="ExpFileEarthAngles">ERNST_i97_a500_EarthAngles.csv</entry>
+    <entry key="ExpTextFormat">UTF-8</entry>
 </properties>
