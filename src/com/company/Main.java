@@ -12,7 +12,7 @@ license is prohibited and liable to prosecution.
 The use of this software is only allowed under the terms and condition of the
 General Public License version 2.0 (GPL 2.0).
 
-Copyright©2018 Gesellschaft zur Foerderung der angewandten Forschung e.V. acting
+Copyright©2019 Gesellschaft zur Foerderung der angewandten Forschung e.V. acting
 on behalf of its Fraunhofer Institut für  Kurzzeitdynamik. All rights reserved.
 
 Contact: max.gulde@emi.fraunhofer.de
@@ -22,6 +22,8 @@ Contact: max.gulde@emi.fraunhofer.de
 package com.company;
 
 import java.io.*;
+
+import org.orekit.attitudes.LofOffset;
 import org.orekit.data.*;
 import org.orekit.frames.*;
 import org.orekit.time.*;
@@ -77,18 +79,19 @@ public class Main
         TimeEnd = TimeStart.shiftedBy(SimDurationInSec);
 
         // Set up satellite orbit
-        double SatAltitude = Double.parseDouble(Set.GetValue("SatAltitude")) + Settings.EarthRadius;
+        double SemiMajorAxis = Double.parseDouble(Set.GetValue("SatAltitude")) + Settings.EarthRadius;
         double SatEccentricity = Double.parseDouble(Set.GetValue("SatEccentricity"));
         double SatInclination = Double.parseDouble(Set.GetValue("SatInclination"));
         double SatOmega = Double.parseDouble(Set.GetValue("SatOmega"));
         double SatRAAN = Double.parseDouble(Set.GetValue("SatRAAN"));
         double SatMeanAnomaly = Double.parseDouble(Set.GetValue("SatMeanAnomaly"));
-        InitialOrbit = new KeplerianOrbit(SatAltitude, SatEccentricity, Math.toRadians(SatInclination),
-                Math.toRadians(SatOmega), Math.toRadians(SatRAAN), Math.toRadians(SatMeanAnomaly),
-                PositionAngle.MEAN, InertialFrame, TimeStart, Settings.EarthGM);
+        InitialOrbit = new CircularOrbit(SemiMajorAxis, SatEccentricity * Math.cos(Math.toRadians(SatOmega)),
+                SatEccentricity * Math.sin(Math.toRadians(SatOmega)), Math.toRadians(SatInclination),
+                Math.toRadians(SatRAAN), Math.toRadians(SatMeanAnomaly), PositionAngle.MEAN,
+                InertialFrame, TimeStart, Constants.EIGEN5C_EARTH_MU);
         if (Settings.fDisplayMessages) {
             System.out.println("Created satellite orbit:");
-            System.out.println("\tSatAltitude = " + SatAltitude);
+            System.out.println("\tSemiMajorAxis = " + SemiMajorAxis);
             System.out.println("\tSatEccentricity = " + SatEccentricity);
             System.out.println("\tSatInclination = " + SatInclination);
             System.out.println("\tSatOmega = " + SatOmega);
@@ -96,11 +99,16 @@ public class Main
             System.out.println("\tSatMeanAnomaly = " + SatMeanAnomaly);
         }
 
-        // Set up Keplerian propagator
-        KeplerianPropagator Kepler = new KeplerianPropagator(InitialOrbit);
-        Kepler.setSlaveMode();
+        // Set up propagator
+        EcksteinHechlerPropagator Propagator = new EcksteinHechlerPropagator(InitialOrbit,
+                new LofOffset(InitialOrbit.getFrame(), LOFType.TNW),
+                Constants.EIGEN5C_EARTH_EQUATORIAL_RADIUS,
+                Constants.EIGEN5C_EARTH_MU,  Constants.EIGEN5C_EARTH_C20,
+                Constants.EIGEN5C_EARTH_C30, Constants.EIGEN5C_EARTH_C40,
+                Constants.EIGEN5C_EARTH_C50, Constants.EIGEN5C_EARTH_C60);
+        Propagator.setSlaveMode();
         if (Settings.fDisplayMessages) {
-            System.out.println("Created Keplerian propagator.");
+            System.out.println("Created Eckstein-Hechler propagator.");
         }
 
         // Setting up files and print files header
@@ -137,7 +145,7 @@ public class Main
         EventDetector StationVisibility = new ElevationDetector(MaxCheckInterval,MaxDivThreshold,
                 GroundStationFrame).withConstantElevation(Math.toRadians(MinElevation)).withHandler(VisH);
         // Add event detector to the propagator.
-        Kepler.addEventDetector(StationVisibility);
+        Propagator.addEventDetector(StationVisibility);
         if (Settings.fDisplayMessages) {
             System.out.println("Created elevation detector with min elevation = " + MinElevation + " deg, max check interval = " + MaxCheckInterval + " s, divergence threshold = " + MaxDivThreshold + " s.");
         }
@@ -160,7 +168,7 @@ public class Main
             AbsoluteDate t = TimeStart.shiftedBy(i * dt);
 
             // Propagate S/C
-            SpacecraftState CurrentSCState = Kepler.propagate(t);
+            SpacecraftState CurrentSCState = Propagator.propagate(t);
 
             // Get the date & time
             AbsoluteDate AbsDate = CurrentSCState.getDate();
