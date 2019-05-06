@@ -23,7 +23,7 @@
     <entry key="TargetLon">7.846619</entry>
     <entry key="TargetLat">48.001081</entry>
     <entry key="TargetAlt">320</entry>
-    <entry key="ResultsDirectory">U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data/Access</entry>
+    <entry key="ResultsDirectory">U:/3 Plattform/Thermal/EQM Analyse/Data/Access</entry>
     <entry key="ExpFileAccessTimes">ERNST_i97_a500_AccessTimes.csv</entry>
     <entry key="ExpFileSunAngles">ERNST_i97_a500_SunAngles.csv</entry>
     <entry key="ExpFileEarthAngles">ERNST_i97_a500_EarthAngles.csv</entry>
