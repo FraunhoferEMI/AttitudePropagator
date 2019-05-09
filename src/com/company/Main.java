@@ -40,11 +40,14 @@ public class Main
     public static void main(String[] args) throws Exception {
 
         // Fields
-        CelestialBody Sun, Earth;
+        CelestialBody Sun;//, Earth;
         Frame InertialFrame, EarthFrame;
         Orbit InitialOrbit;
-        PrintWriter SunAngles, EarthAngles;
+        PrintWriter SunAngles;//, EarthAngles;
         AbsoluteDate TimeStart, TimeEnd;
+
+        // Print versions
+        System.out.println("Using Java Runtime " + System.getProperty("java.version"));
 
         // Load parameters from settings file
         Settings Set = new Settings();
@@ -53,19 +56,20 @@ public class Main
         long SimEndTime, SimStartTime = System.currentTimeMillis();
 
         // Orekit configuration
-        File OrekitData = new File("Libraries/orekit-data"); // The argument indicates the path to the config folder
+        File OrekitData = new File("//EMI-FS2/Abteilung 1.90/PROJEKTE/aktuell/108715 Nanosat BW/3 Plattform/Thermal/EQM Analyse/Software/SatelliteAttitudePropagator/Libraries/orekit-data"); // The argument indicates the path to the config folder
         DataProvidersManager Manager = DataProvidersManager.getInstance();
         Manager.addProvider(new DirectoryCrawler(OrekitData));
         if (Settings.fDisplayMessages) {
             System.out.println("Loaded orekit configuration.");
         }
 
+
         // Create inertial frame for Earth, celestial bodies, and ground station
         InertialFrame = FramesFactory.getEME2000(); // J2000, centered at Earth's center, moving with surface rotation
         Sun = CelestialBodyFactory.getSun();
-        Earth = CelestialBodyFactory.getEarth();
+//        Earth = CelestialBodyFactory.getEarth();
         if (Settings.fDisplayMessages) {
-            System.out.println("Created Earth inertial frame.");
+            System.out.println("Created inertial frames.");
         }
 
         // Set up time frame
@@ -114,10 +118,10 @@ public class Main
         // Setting up files and print files header
         String FilePath = Set.GetValue("ResultsDirectory") + "/" + Set.GetValue("ExpFileSunAngles");
         SunAngles = new PrintWriter(FilePath,Set.GetValue("ExpTextFormat"));
-        FilePath = Set.GetValue("ResultsDirectory") + "/" + Set.GetValue("ExpFileEarthAngles");
-        EarthAngles = new PrintWriter(FilePath,Set.GetValue("ExpTextFormat"));
         SunAngles.println("\"Time (UTCG)\",\"Azimuth (deg)\",\"Elevation (deg)\",\"Subsolar (deg)\"");
-        EarthAngles.println("\"Time (UTCG)\",\"Azimuth (deg)\",\"Elevation (deg)\"");
+//        FilePath = Set.GetValue("ResultsDirectory") + "/" + Set.GetValue("ExpFileEarthAngles");
+//        EarthAngles = new PrintWriter(FilePath,Set.GetValue("ExpTextFormat"));
+//        EarthAngles.println("\"Time (UTCG)\",\"Azimuth (deg)\",\"Elevation (deg)\"");
         if (Settings.fDisplayMessages) {
             System.out.println("Created satellite orientation files.");
         }
@@ -184,7 +188,7 @@ public class Main
 
             // Get position vectors.
             Vector3D Earth2Sun = Sun.getPVCoordinates(AbsDate, InertialFrame).getPosition();    // Sun position as seen from Earth
-            Vector3D Sat2Earth = Earth.getPVCoordinates(AbsDate, SatelliteFrame).getPosition(); // Earth position as seen from satellite
+//            Vector3D Sat2Earth = Earth.getPVCoordinates(AbsDate, SatelliteFrame).getPosition(); // Earth position as seen from satellite
             Vector3D Sat2Sun = Sun.getPVCoordinates(AbsDate, SatelliteFrame).getPosition();     // Sun position as seen from satellite
             Vector3D Earth2Sat = CurrentSCState.getPVCoordinates().getPosition();
             // Angle projected on xy plane in satellite geometry
@@ -207,32 +211,34 @@ public class Main
                     DateComps.getDay(), StrMonth, DateComps.getYear(), TimeComps.getHour(), TimeComps.getMinute(),
                     TimeComps.getSecond(), SunAzimuth, SunElevation, Subsolar);
 
-            // Compute Earth angles (deg)
+            /*
+            Compute Earth angles (deg)
             double EarthAzimuth, EarthElevation;
             if (Sat2Earth.getX() == 0 & Sat2Earth.getY() == 0) { // Prevents crashing when X and Y are both 0
-                EarthAzimuth = 0.0;
-                EarthElevation = 90.0;
+            EarthAzimuth = 0.0;
+            EarthElevation = 90.0;
             } else {
-                EarthAzimuth = Math.toDegrees(Vector3D.angle(Vector3D.PLUS_I, Sat2Earth.add(new Vector3D(0.0, 0.0, -Sat2Earth.getZ()))));
-                EarthElevation = Math.toDegrees(Vector3D.angle(Sat2Earth, new Vector3D(Sat2Earth.getX(), Sat2Earth.getY(), 0.0)));
+            EarthAzimuth = Math.toDegrees(Vector3D.angle(Vector3D.PLUS_I, Sat2Earth.add(new Vector3D(0.0, 0.0, -Sat2Earth.getZ()))));
+            EarthElevation = Math.toDegrees(Vector3D.angle(Sat2Earth, new Vector3D(Sat2Earth.getX(), Sat2Earth.getY(), 0.0)));
             }
             // Check sign
             if (Sat2Earth.getY() < 0) {
-                EarthAzimuth = 360 - EarthAzimuth;
+            EarthAzimuth = 360 - EarthAzimuth;
             }
             if (Sat2Earth.getZ() < 0) {
-                EarthElevation = -EarthElevation;
+            EarthElevation = -EarthElevation;
             }
 
             // Write to Earth angles file.
             EarthAngles.printf(Settings.LocalFormat, "%d %s %d %02d:%02d:%06.3f,%07.3f,%07.3f\n",
-                    DateComps.getDay(), StrMonth, DateComps.getYear(), TimeComps.getHour(), TimeComps.getMinute(),
-                    TimeComps.getSecond(),EarthAzimuth, EarthElevation);
+            DateComps.getDay(), StrMonth, DateComps.getYear(), TimeComps.getHour(), TimeComps.getMinute(),
+            TimeComps.getSecond(),EarthAzimuth, EarthElevation);
+            */
         }
 
         // Close files.
         SunAngles.close();
-        EarthAngles.close();
+//        EarthAngles.close();
         VisH.CloseFile();
 
         // Calculate and print elapsed time.

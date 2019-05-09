@@ -129,7 +129,7 @@ class Settings
         String StrIdentifier = "i98_a700";
         AppSettings.setProperty("SatelliteName", SatelliteName);
         AppSettings.setProperty("ExpFileSunAngles", SatelliteName + "_" + StrIdentifier + "_SunAngles.csv");
-        AppSettings.setProperty("ExpFileEarthAngles", SatelliteName + "_" + StrIdentifier + "_EarthAngles.csv");
+//        AppSettings.setProperty("ExpFileEarthAngles", SatelliteName + "_" + StrIdentifier + "_EarthAngles.csv");
         AppSettings.setProperty("ExpFileAccessTimes", SatelliteName + "_" + StrIdentifier + "_AccessTimes.csv");
         AppSettings.setProperty("ExpTextFormat", "UTF-8");
         AppSettings.setProperty("ResultsDirectory", "U:/3 Plattform/Thermal/2018-11 EQM Analyse/Data");

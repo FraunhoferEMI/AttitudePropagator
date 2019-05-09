@@ -3,8 +3,18 @@
     <output-path>$PROJECT_DIR$/out/artifacts/SAP_jar</output-path>
     <root id="archive" name="SatelliteAttitudePropagator.jar">
       <element id="module-output" name="SatelliteAttitudePropagator" />
-      <element id="library" level="project" name="hipparchus" />
-      <element id="library" level="project" name="orekit" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/orekit-9.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-clustering-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-core-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-fft-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-filtering-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-fitting-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-geometry-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-migration-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-ode-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-optim-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-samples-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Libraries/hipparchus/hipparchus-stat-1.5.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

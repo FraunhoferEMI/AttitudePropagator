@@ -26,6 +26,5 @@
     <entry key="ResultsDirectory">\\EMI-FS2\Abteilung 1.90\PROJEKTE\aktuell\108715 Nanosat BW\3 Plattform\Thermal\EQM Analyse\Data\Attitude\</entry>
     <entry key="ExpFileAccessTimes">ERNST_i98_a500_AccessTimes.csv</entry>
     <entry key="ExpFileSunAngles">ERNST_i98_a500_SunAngles.csv</entry>
-    <entry key="ExpFileEarthAngles">ERNST_i98_a500_EarthAngles.csv</entry>
     <entry key="ExpTextFormat">UTF-8</entry>
 </properties>
