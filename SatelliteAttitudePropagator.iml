@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="hipparchus-1" level="project" />
-    <orderEntry type="library" name="orekit-9.2" level="project" />
+    <orderEntry type="library" name="hipparchus" level="project" />
+    <orderEntry type="library" name="orekit" level="project" />
   </component>
 </module>

@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="hipparchus">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-clustering-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-core-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-fft-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-filtering-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-fitting-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-geometry-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-migration-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-ode-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-optim-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-samples-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libraries/hipparchus/hipparchus-stat-1.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
